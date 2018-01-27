@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<title>{{title}}</title>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="./assets/angular.js"></script>
+	<script type="text/javascript" src="./assets/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./assets/progressbar.js"></script>
+	
+	
+	<script type="text/javascript" src="./js/app.js"></script>
+	<script type="text/javascript" src="./js/toast.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" href="./css/circle.css">
+	<!-- <link rel="stylesheet" type="text/css" href="./css/toastr.less"> -->
+	<link rel="stylesheet" type="text/css" href="./css/toastr.scss">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css"> -->
+
+
+</head>
+
+<body>
+	<div id="toolbar">
+
+		<p><span style="float:left"> <img style="margin-top:-8px;margin-left:-5px;margin-right:5px;width:36px;" src="./img/icon.png"/> </span> {{title}}</p>
+	</div>
+	<div id="calculation" class="container" ng-controller="emicalculator">
+		<br/>
+		<br/>
+		<div id="content" class="card">
+			<div class="contentsub">
+				<label>Principal Amount  <span class="notespan">({{currencytype}})</span><span class="infospan" ng-show="principal<=1000000000 && principal>0" >{{"    "+principalFn()}}</span></label><br/>
+				<input type="number" id="input1" ng-model="principal" tabindex="1" allow-only-numbers><br/>
+			</div>
+			
+			<div class="contentsub">
+				<label>Interest  <span class="notespan">(max: 50% per annum)</span></label><br/>
+				<input type="number" id="input2" ng-model="interest" tabindex="2" allow-only-numbers><br/>
+			</div>
+			
+			<div class="contentsub">
+				<label>Loan tenure  <span class="notespan">(max: 360 months)</span> <span class="infospan" ng-show="duration<=360 && duration>0">{{"  "+durationFn()}}</label><br/>
+					<input type="number" id="input3" ng-model="duration" tabindex="3" allow-only-numbers><br/>
+				</div>
+
+				<div id="calandrst" align="center">
+					<button id="button1" ng-click="emicalculatorFn(principal,interest,duration,'emibtn')">Calculate</button>
+					<button id="button2" ng-click="emichartFn()">EMI Chart</button>
+					<button id="button3" ng-click="resetFn()">Clear</button>
+				</div>
+
+			</div>
+
+			<!-- <label>{{typed}}</label>  -->
+
+			<div id="part1" ng-show="emicostval">   
+				<br/>
+				<div align="center">
+					<div class="card" style="padding: 10px;">
+						<p class="padd">Total Principal</p>
+						<p class="padd">{{currencytype}} {{principal | thouseparator:principal }} </p>
+
+						<div id="container" ng-show="bar()">
+						</div>
+					</div>
+					<br/>
+					<!-- <hr class="style-four"/> -->
+					<div class="card" style="padding: 10px;">
+						<p class="padd">Total Interest Payable</p>
+						<p class="padd">{{currencytype}} {{interestamount | thouseparator:interestamount }}</p>
+
+						<div id="container1" ng-show="bar1()">
+						</div>
+					</div>
+				</div>
+				
+				<!-- <hr class="style-four"/> -->
+
+				<div align="center">
+					<br/>
+					<div class="emitag card">
+						<p class="padd">EMI (Monthly Payment) </p>
+						<p class="padd emivalue">{{currencytype}} {{emiamount | thouseparator:emiamount}}</p>
+					</div>
+					<hr class="style-four"/>
+					<div class="tottag card">
+						<p class="padd1">Total : {{currencytype}} {{totalamount | thouseparator:totalamount}}</p>
+						<p class="padd1"> ( Principal + Interest) </p>
+					</div>
+					<hr class="style-four"/>
+				</div>
+			</div>
+			
+			<div id="part2" align="center" class="emichart1" ng-show="!emicostval && emichartval">
+				<br/>
+				<div class="emisheet" style="margin-top:10px;font-size:18px;">
+					<p class="padd" >EMI Chart for each Month</p></div>
+
+					<div class="chart card" style="margin-top:5px;margin-bottom: 10px;">
+						<div class="flex-container" ng-repeat="x in emichart">
+							<div class="flex-item" ng-if="$index==0">Month</div>
+							<div class="flex-item" ng-if="$index>0">{{ $index }}</div>
+
+							<div class="flex-item" ng-if="$index==0">{{ x.principal}}</div>
+							<div class="flex-item" ng-if="$index==0">{{ x.interest}}</div>
+							<div class="flex-item" ng-if="$index==0">{{ x.balance}}</div>
+
+							<div class="flex-item" ng-if="$index>0">{{ x.principal | thouseparator:x.principal }}</div>
+							<div class="flex-item" ng-if="$index>0">{{ x.interest | thouseparator:x.interest }}</div>
+							<div class="flex-item" ng-if="$index>0">{{ x.balance | thouseparator:x.balance }}</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+		</body>
+		<script type="text/javascript" src="./js/action.js"></script>
+		</html>

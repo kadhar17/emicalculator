@@ -1,0 +1,11 @@
+{
+	"android":{
+		"release":{
+			"keystore":"abdul.keystore",
+			"storePassword":"abdul123",
+			"alias":"abdul",
+			"password":"abdul123",
+			"keystoreType":""
+		}
+	}
+}

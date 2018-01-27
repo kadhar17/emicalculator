@@ -1,0 +1,24 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.abdul.emicalculator"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.abdul.emicalculator"
+    },
+    "cordova-plugin-fullscreen": {
+      "PACKAGE_NAME": "com.abdul.emicalculator"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.abdul.emicalculator"
+    }
+  },
+  "dependent_plugins": {}
+}
